@@ -1,0 +1,667 @@
+
+:root{--bg:#04070d;--panel:#0b111b;--gold:#e5bc3e;--gold2:#f6d86a;--cream:#f4ecdb;--blue:#28aee8;--line:#5b4123;--muted:#b9aa88;font-family:ui-monospace,SFMono-Regular,Menlo,Monaco,Consolas,"Liberation Mono",monospace}*{box-sizing:border-box}body{margin:0;background:radial-gradient(circle at 82% 6%,rgba(40,174,232,.34),transparent 26%),radial-gradient(circle at 12% 10%,rgba(229,188,62,.18),transparent 16%),linear-gradient(180deg,#05070d,#0b0706 70%,#160d08);color:var(--cream);min-height:100vh}body:before{content:"";position:fixed;inset:0;background-image:radial-gradient(#fff 1px,transparent 1px);background-size:46px 46px;opacity:.12;pointer-events:none}.app{max-width:1380px;margin:0 auto;padding:24px}.hero{border:2px solid var(--line);border-radius:24px;background:linear-gradient(135deg,#05070d,#111827 48%,#071c2b);padding:24px;box-shadow:0 16px 60px rgba(0,0,0,.55);position:relative;overflow:hidden}.hero:after{content:"";position:absolute;right:-55px;top:10px;width:300px;height:200px;background:var(--blue);clip-path:polygon(28% 0,100% 14%,75% 100%,0 75%);opacity:.8}.brandline{font-size:18px;font-weight:1000;color:var(--gold2);letter-spacing:.12em;text-shadow:0 2px #5e4317}.title{font-size:46px;font-weight:1000;line-height:.95;color:var(--gold2);text-shadow:0 4px #5e4317,0 0 18px rgba(246,216,106,.35);letter-spacing:-2px}.subtitle{font-weight:900;letter-spacing:.08em}.territories{display:flex;gap:10px;flex-wrap:wrap;margin:16px 0 0}.tab{border:1px solid var(--line);background:#10161f;color:var(--cream);box-shadow:none}.tab.active{background:linear-gradient(#f4d46e,#c59325);color:#171006;box-shadow:0 4px #694814}.grid{display:grid;grid-template-columns:390px 1fr;gap:18px;margin-top:18px}.lower{grid-template-columns:1fr 1fr}.card{border:1px solid var(--line);border-radius:18px;background:rgba(15,18,18,.94);padding:16px;box-shadow:0 8px 30px rgba(0,0,0,.35)}h2,h3{color:var(--gold);margin:0 0 12px}.formrow{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:10px 0}label{display:block;color:var(--muted);font-size:12px;text-transform:uppercase;font-weight:900;letter-spacing:.07em;margin:0 0 5px}select,input{width:100%;padding:10px;border-radius:10px;border:1px solid #634923;background:#0a0d10;color:var(--cream);font:inherit}button{border:0;border-radius:12px;background:linear-gradient(#f4d46e,#c59325);color:#171006;padding:11px 14px;font-weight:1000;font:inherit;cursor:pointer;box-shadow:0 4px #694814}button.secondary{background:#1a2f3d;color:var(--cream);box-shadow:none;border:1px solid #35637d}.wide{width:100%;margin-top:8px}.territory-note{font-size:13px;color:var(--muted);border:1px solid #3f301c;background:#100d09;border-radius:12px;padding:10px;margin:0 0 12px}.territory-note strong{color:var(--gold2)}.territory-note span{color:var(--blue)}.scoreboard{display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px}.stat{background:#11170f;border:1px solid #344121;border-radius:14px;padding:12px}.big{font-size:28px;color:var(--gold2);font-weight:1000}.wrestlers{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:12px}.wcard{background:#11100d;border:1px solid #4b3520;border-radius:14px;padding:12px}.bar{height:12px;border-radius:99px;background:#2a1813;overflow:hidden;border:1px solid #5a3b22}.bar span{display:block;height:100%;background:linear-gradient(90deg,#2aaeea,#f6d86a)}.log{margin-top:14px;max-height:560px;overflow:auto;background:#0b0908;border:1px solid #3a2a19;border-radius:16px;padding:0}.entry{padding:12px 16px;border-bottom:1px solid #322313}.entry.raffle{background:#241b0e}.entry.pin{background:#301412}.entry.result{background:#15200f;font-size:22px}.entry strong{color:var(--gold)}.entry em{color:#8fdcff;font-style:normal}.pill{display:inline-block;border:1px solid #725624;border-radius:99px;padding:3px 8px;color:var(--gold2);font-size:12px;margin:0 6px 6px 0}.pill.red{color:#ffad98;border-color:#8b2e24}.rating{font-size:24px;color:var(--gold2);letter-spacing:1px}.goat{color:#8fdcff;font-weight:1000}.tiny{font-size:12px;color:var(--muted)}.empty{min-height:240px;display:flex;flex-direction:column;justify-content:center}.roster-count{font-size:68px;line-height:1;color:var(--gold2);font-weight:1000;text-shadow:0 3px #5e4317}.matchlist{display:grid;gap:8px;margin-top:12px}.matchslot{display:grid;grid-template-columns:1fr 140px 1fr 1fr;gap:8px;background:#0b0908;border:1px solid #3a2a19;padding:8px;border-radius:12px}.miniLog{max-height:180px;overflow:auto;background:#0b0908;border:1px solid #3a2a19;padding:8px;border-radius:12px}#entrantSelect{height:260px}@media(max-width:980px){.grid,.lower,.scoreboard,.wrestlers{grid-template-columns:1fr}.title{font-size:34px}.hero:after{opacity:.35}.matchslot{grid-template-columns:1fr}}
+.tagSetup{margin-top:14px;border:1px solid #3a2a19;background:#0b0908;border-radius:14px;padding:12px}.tagSetup h3{margin-top:0}.tagTeams{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:12px}.teamBox{background:#0d0b08;border:1px solid #4b3520;border-radius:16px;padding:12px}.teamMembers{display:grid;grid-template-columns:1fr;gap:8px;margin-top:10px}.wcard.legal{outline:2px solid var(--gold2);box-shadow:0 0 18px rgba(246,216,106,.18)}.wcard.apron{opacity:.76}.legalBadge{font-size:11px;color:#171006;background:var(--gold2);border-radius:99px;padding:2px 6px;margin-left:6px;vertical-align:middle}.entry.tag{background:#10202a;border-left:4px solid var(--blue)}@media(max-width:980px){.tagTeams{grid-template-columns:1fr}}
+
+.entrantTools{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin:10px 0}
+.entrantChecklist{max-height:360px;overflow:auto;border:1px solid rgba(255,255,255,.12);border-radius:14px;background:rgba(0,0,0,.18);padding:8px;display:grid;gap:6px}
+.entrantRow{display:grid;grid-template-columns:auto 1fr auto;align-items:center;gap:10px;padding:8px 10px;border-radius:10px;background:rgba(255,255,255,.05);cursor:pointer}
+.entrantRow:hover{background:rgba(255,255,255,.09)}
+.entrantRow input{width:18px;height:18px;accent-color:#f5c542}
+.entrantRow span{font-weight:800;color:#fff}
+.entrantRow em{font-size:12px;color:#d7c89c;font-style:normal;white-space:nowrap}
+.dbList{display:grid;gap:6px;max-height:260px;overflow:auto;margin-bottom:14px}
+.dbRow{display:grid;gap:3px;padding:8px 10px;border:1px solid rgba(255,255,255,.1);border-radius:10px;background:rgba(255,255,255,.045)}
+.dbRow strong{color:#fff}
+.dbRow span{font-size:12px;color:#d9d0b8}
+.homeHero{margin-bottom:18px}
+.universeGrid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px;margin-top:18px}
+.universeCard{display:grid;gap:10px;text-align:left;min-height:190px;padding:22px;border-radius:20px;border:1px solid var(--line);background:linear-gradient(135deg,#10161f,#11100d);color:var(--cream);box-shadow:0 8px 30px rgba(0,0,0,.35);cursor:pointer}
+.universeCard span{font-size:26px;font-weight:1000;color:var(--gold2);line-height:1.05}
+.universeCard em{font-style:normal;color:var(--muted);font-size:14px;line-height:1.35}
+.universeCard strong{align-self:end;color:#8fdcff;font-size:13px}
+.universeCard:hover{transform:translateY(-2px);border-color:var(--gold2);box-shadow:0 12px 40px rgba(0,0,0,.5)}
+.universeCard.disabled{opacity:.55;cursor:not-allowed;border-style:dashed}
+.universeCard.disabled:hover{transform:none;border-color:var(--line)}
+@media(max-width:980px){.universeGrid{grid-template-columns:1fr}.universeCard{min-height:150px}}
+.rankingUpdate{display:inline-block;margin-top:8px;color:#f8d56b;font-weight:800;}
+.staticField{border:1px solid #5a3d16;border-radius:6px;padding:7px 10px;min-height:22px;color:#c8bea0;background:#080b0c;font-size:.85rem;line-height:1.2}
+.quickControls{margin-top:10px;padding-top:10px;border-top:1px solid rgba(255,255,255,.08)}
+.quickControls button:disabled{opacity:.45;cursor:not-allowed;filter:grayscale(.25)}
+
+.mainNav{display:flex;gap:10px;flex-wrap:wrap;margin:18px 0 0;position:relative;z-index:2}.territoryTabs{position:relative;z-index:2}.singlePane{margin-top:18px}.dashGrid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin:22px 0}.dbList.tall{max-height:520px}.mainNav .tab{font-size:15px;padding:10px 14px}.staticField{padding:10px;border-radius:10px;border:1px solid #634923;background:#0a0d10;color:var(--muted);min-height:42px}@media(max-width:980px){.dashGrid{grid-template-columns:1fr}.mainNav{display:grid;grid-template-columns:1fr 1fr}.singlePane{margin-top:12px}}
+
+/* v12 clean territory shell */
+.hero{min-height:210px;padding-right:260px}
+.universeReturn{position:absolute;right:24px;top:24px;z-index:3;font-size:15px;padding:12px 16px}
+.shell{display:grid;grid-template-columns:220px 1fr;gap:18px;margin-top:18px;align-items:start}
+.sideNav{display:grid;gap:10px;position:sticky;top:18px}
+.sideNav .tab{width:100%;text-align:left;padding:14px 16px;font-size:17px;border-radius:14px}
+.contentPane{min-width:0}.contentPane .singlePane{margin-top:0}.contentPane>.grid{margin-top:0}
+.eventTypeGrid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px;margin:10px 0 12px}
+.eventTypeChip{border:1px solid #3a2a19;border-radius:12px;background:rgba(0,0,0,.16);padding:10px;min-height:72px}
+.eventTypeChip strong{display:block;color:var(--gold2);font-size:13px;margin-bottom:5px}.eventTypeChip span{display:block;color:var(--muted);font-size:11px;line-height:1.25}.eventTypeChip.active{border-color:var(--gold2);background:rgba(229,188,62,.13)}
+@media(max-width:980px){.hero{min-height:0;padding-right:24px;padding-top:72px}.universeReturn{left:24px;right:auto}.shell{grid-template-columns:1fr}.sideNav{position:relative;top:0;grid-template-columns:repeat(2,minmax(0,1fr))}.eventTypeGrid{grid-template-columns:1fr}.title{font-size:38px}}
+
+
+/* v14 top-strip horizontal command bar */
+.hero{
+  min-height:260px;
+  padding-right:260px;
+  padding-bottom:86px;
+}
+.heroNavBar{
+  position:absolute;
+  left:24px;
+  right:24px;
+  bottom:22px;
+  z-index:3;
+  display:flex;
+  gap:12px;
+  align-items:center;
+  flex-wrap:wrap;
+}
+.heroNavBar .tab{
+  text-align:center;
+  padding:11px 18px;
+  font-size:15px;
+  border-radius:14px;
+  min-width:128px;
+}
+.contentPane{
+  margin-top:18px;
+  min-width:0;
+}
+.contentPane .singlePane{margin-top:0}
+.contentPane>.grid{margin-top:0}
+.shell{display:block;margin-top:0}
+.sideNav{display:none}
+.universeReturn{
+  position:absolute;
+  right:24px;
+  top:24px;
+  z-index:3;
+  font-size:15px;
+  padding:12px 16px;
+}
+@media(max-width:980px){
+  .hero{min-height:0;padding-right:24px;padding-top:72px;padding-bottom:24px}
+  .heroNavBar{position:relative;left:auto;right:auto;bottom:auto;margin-top:18px;display:grid;grid-template-columns:repeat(2,minmax(0,1fr))}
+  .heroNavBar .tab{min-width:0;width:100%}
+  .universeReturn{left:24px;right:auto}
+}
+
+/* v15 header spacing polish */
+.hero .title{
+  line-height:.9;
+  margin-bottom:22px;
+}
+.hero .subtitle{
+  display:block;
+  position:relative;
+  z-index:3;
+  margin-top:18px;
+  padding-top:4px;
+}
+
+/* v16 post-match notable events */
+.notableEvents{
+  margin-top:14px;
+  padding:12px 14px;
+  border:1px solid rgba(248,213,107,.36);
+  border-radius:12px;
+  background:rgba(248,213,107,.08);
+  color:#f4e7bd;
+}
+.notableEvents strong{
+  display:block;
+  color:#f8d56b;
+  letter-spacing:.06em;
+  margin-bottom:6px;
+}
+.notableEvents ul{
+  margin:6px 0 0 0;
+  padding-left:0;
+  list-style:none;
+  display:grid;
+  gap:6px;
+}
+.notableEvents li{
+  line-height:1.35;
+  color:#ddd1ab;
+}
+.notableEvents li span{
+  display:inline-block;
+  min-width:112px;
+  margin-right:8px;
+  color:#fff1a8;
+  font-weight:800;
+}
+.notableEvents.quiet{
+  border-color:rgba(255,255,255,.12);
+  background:rgba(255,255,255,.035);
+  color:#a99f86;
+}
+.notableEvents.quiet strong{color:#c7b881}
+
+/* v20 booking advisor, allies/enemies, feud heat */
+.rosterSheets{gap:10px}
+.rosterSheet{border:1px solid rgba(255,255,255,.1);border-radius:14px;background:rgba(255,255,255,.04);padding:10px}
+.rosterHead{display:flex;justify-content:space-between;gap:12px;align-items:center;margin-bottom:8px}
+.rosterHead strong{color:#fff}.rosterHead span{color:#d9d0b8;font-size:12px}.formrow.compact{margin:6px 0 0}
+.feudRow{display:grid;grid-template-columns:1.3fr 90px 1fr 120px;gap:10px;align-items:end;border:1px solid rgba(255,255,255,.1);border-radius:12px;background:rgba(255,255,255,.045);padding:10px}
+.feudRow strong{color:#fff}.feudRow span{display:block;color:#d9d0b8;font-size:12px;margin-top:4px}.feudRow.inactive{opacity:.55}
+.advisorPanel{margin:14px 0;border:1px solid rgba(248,213,107,.28);border-radius:16px;background:rgba(248,213,107,.055);padding:14px}
+.advisorPanel h3{margin-bottom:10px}.scheduleHelper{display:grid;gap:6px;border:1px solid rgba(255,255,255,.1);border-radius:12px;background:rgba(0,0,0,.2);padding:10px;margin-bottom:10px}
+.scheduleHelper strong{color:var(--gold2)}.scheduleHelper span,.scheduleHelper em{color:var(--muted);font-size:12px;line-height:1.35}.scheduleHelper em{color:#f4df9c;font-style:normal}
+.advisorWarnings{border:1px solid rgba(255,122,98,.45);background:rgba(255,80,60,.08);border-radius:12px;padding:10px;margin-bottom:10px;color:#ffd2c9;font-size:12px;display:grid;gap:5px}.advisorWarnings strong{color:#ffb09d}
+.suggestionList{display:grid;gap:8px}.suggestionRow{display:grid;grid-template-columns:1fr auto;gap:10px;align-items:center;border:1px solid rgba(255,255,255,.1);border-radius:12px;background:rgba(255,255,255,.04);padding:10px}
+.suggestionRow strong{color:#fff}.suggestionRow span{display:block;color:#d9d0b8;font-size:12px;margin-top:3px}.suggestionRow.enhancement{border-color:rgba(40,174,232,.35);background:rgba(40,174,232,.06)}.suggestionRow.feud{border-color:rgba(248,213,107,.34)}
+@media(max-width:980px){.feudRow{grid-template-columns:1fr}.rosterHead{display:grid}.suggestionRow{grid-template-columns:1fr}}
+
+
+/* v23 promotion-specific universe themes */
+.app.theme-crockett1986{
+  --gold:#6f3aa7;
+  --gold2:#ffffff;
+  --blue:#5c2e91;
+  --line:#4b267a;
+  --muted:#c9bfd9;
+  --cream:#f7f4ff;
+}
+.app.theme-crockett1986 .hero{
+  background:
+    radial-gradient(circle at 82% 0%, rgba(111,58,167,.28), transparent 28%),
+    linear-gradient(135deg,#07070d,#11162a 48%,#170b24);
+  border-color:#4b267a;
+}
+.app.theme-crockett1986 .hero:after{
+  background:linear-gradient(135deg,#4b267a,#2f1459);
+  opacity:.9;
+}
+.app.theme-crockett1986 .brandline,
+.app.theme-crockett1986 .title{
+  color:#f7f4ff;
+  text-shadow:0 4px #2f1459,0 0 18px rgba(111,58,167,.42);
+}
+.app.theme-crockett1986 .subtitle{
+  color:#d9caef;
+}
+.app.theme-crockett1986 button:not(.secondary),
+.app.theme-crockett1986 .tab.active{
+  background:linear-gradient(#ffffff,#b9a2da);
+  color:#241036;
+  box-shadow:0 4px #321657;
+}
+.app.theme-crockett1986 .tab,
+.app.theme-crockett1986 select,
+.app.theme-crockett1986 input,
+.app.theme-crockett1986 .card,
+.app.theme-crockett1986 .wcard,
+.app.theme-crockett1986 .teamBox,
+.app.theme-crockett1986 .tagSetup,
+.app.theme-crockett1986 .log,
+.app.theme-crockett1986 .miniLog{
+  border-color:#4b267a;
+}
+.app.theme-crockett1986 h2,
+.app.theme-crockett1986 h3,
+.app.theme-crockett1986 .entry strong,
+.app.theme-crockett1986 .big,
+.app.theme-crockett1986 .pill,
+.app.theme-crockett1986 .roster-count{
+  color:#ffffff;
+  text-shadow:0 2px #321657;
+}
+.app.theme-crockett1986 .bar span{
+  background:linear-gradient(90deg,#6f3aa7,#ffffff);
+}
+
+.app.theme-wwf1985_90{
+  --gold:#f5c542;
+  --gold2:#fff177;
+  --blue:#1d73ff;
+  --line:#d97928;
+  --muted:#d9cfa8;
+  --cream:#fff8e8;
+}
+.app.theme-wwf1985_90 .hero{
+  background:
+    radial-gradient(circle at 88% -10%, rgba(255,255,255,.58), transparent 13%),
+    radial-gradient(circle at 74% 18%, rgba(29,115,255,.30), transparent 25%),
+    linear-gradient(135deg,#05070d,#061a5a 45%,#061022 72%,#260b05);
+  border-color:#d97928;
+}
+.app.theme-wwf1985_90 .hero:after{
+  background:linear-gradient(135deg,#1d73ff,#80e7ff 48%,#f5c542 49%,#f05b24 76%);
+  opacity:.95;
+}
+.app.theme-wwf1985_90 .hero:before{
+  content:"";
+  position:absolute;
+  right:86px;
+  top:20px;
+  width:120px;
+  height:120px;
+  background:conic-gradient(from 0deg, transparent 0 8%, rgba(255,255,255,.95) 8% 11%, transparent 11% 25%, rgba(255,255,255,.95) 25% 28%, transparent 28% 50%, rgba(255,255,255,.9) 50% 53%, transparent 53% 75%, rgba(255,255,255,.9) 75% 78%, transparent 78% 100%);
+  clip-path:polygon(50% 0,58% 38%,100% 50%,58% 62%,50% 100%,42% 62%,0 50%,42% 38%);
+  opacity:.72;
+  pointer-events:none;
+  z-index:1;
+}
+.app.theme-wwf1985_90 .brandline,
+.app.theme-wwf1985_90 .title{
+  color:#fff177;
+  text-shadow:0 4px #9b6615,0 0 16px rgba(255,241,119,.35),0 0 26px rgba(29,115,255,.18);
+}
+.app.theme-wwf1985_90 .subtitle{
+  color:#ffffff;
+  text-shadow:0 2px #061a5a;
+}
+.app.theme-wwf1985_90 button:not(.secondary),
+.app.theme-wwf1985_90 .tab.active{
+  background:linear-gradient(#fff177,#f5c542 52%,#f05b24);
+  color:#120904;
+  box-shadow:0 4px #8c3b13;
+}
+.app.theme-wwf1985_90 .tab,
+.app.theme-wwf1985_90 select,
+.app.theme-wwf1985_90 input,
+.app.theme-wwf1985_90 .card,
+.app.theme-wwf1985_90 .wcard,
+.app.theme-wwf1985_90 .teamBox,
+.app.theme-wwf1985_90 .tagSetup,
+.app.theme-wwf1985_90 .log,
+.app.theme-wwf1985_90 .miniLog{
+  border-color:#d97928;
+}
+.app.theme-wwf1985_90 .bar span{
+  background:linear-gradient(90deg,#1d73ff,#80e7ff,#fff177,#f05b24);
+}
+
+.app.theme-combined{
+  /* keep the existing neutral Digital Territory Engine theme */
+}
+
+/* v24 Battle Royal / Royal Rumble two-column action layout */
+.specialLayout{
+  display:grid;
+  grid-template-columns:minmax(360px, 0.9fr) minmax(420px, 1.1fr);
+  gap:18px;
+  align-items:start;
+}
+.specialSetup{min-width:0}
+.specialAction{min-width:0;position:sticky;top:18px;max-height:calc(100vh - 36px);overflow:hidden}
+.specialAction .log{max-height:calc(100vh - 160px);margin-top:0}
+.specialResultEmpty{
+  min-height:260px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  border:1px dashed rgba(255,255,255,.14);
+  border-radius:14px;
+  background:rgba(255,255,255,.035);
+  text-align:center;
+  padding:18px;
+}
+@media(max-width:980px){
+  .specialLayout{grid-template-columns:1fr}
+  .specialAction{position:relative;top:0;max-height:none}
+  .specialAction .log{max-height:560px}
+}
+
+/* v25 fixed dedicated Battle Royal / Royal Rumble split screen */
+.specialScreen{
+  margin-top:18px;
+  display:grid;
+  grid-template-columns:minmax(360px, 42%) minmax(420px, 58%);
+  gap:18px;
+  align-items:start;
+}
+.specialScreen .specialSelector{
+  grid-column:1 / -1;
+  max-width:520px;
+}
+.specialScreen .specialLayout{
+  grid-column:1 / -1;
+  display:grid;
+  grid-template-columns:minmax(360px, 42%) minmax(420px, 58%);
+  gap:18px;
+  align-items:start;
+  width:100%;
+}
+.specialScreen .specialSetup,
+.specialScreen .specialAction{
+  min-width:0;
+  width:100%;
+}
+.specialScreen .specialAction{
+  position:relative;
+  top:0;
+  max-height:none;
+  overflow:visible;
+}
+.specialScreen .specialAction .log{
+  max-height:660px;
+  margin-top:0;
+  overflow:auto;
+}
+.specialScreen .specialResultEmpty{
+  min-height:380px;
+}
+@media(max-width:980px){
+  .specialScreen,
+  .specialScreen .specialLayout{
+    grid-template-columns:1fr;
+  }
+  .specialScreen .specialSelector{max-width:none}
+}
+.resultChip{
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  padding:.45rem .65rem;
+  border-radius:999px;
+  border:1px solid rgba(255,255,255,.16);
+  background:rgba(255,255,255,.08);
+  color:#f8f1d0;
+  font-size:.78rem;
+  white-space:nowrap;
+}
+.conditionalHelp{
+  margin:.75rem 0 1rem;
+  padding:.65rem .8rem;
+  border:1px solid rgba(255,255,255,.1);
+  border-radius:12px;
+  background:rgba(255,255,255,.045);
+}
+
+/* v28 card-builder battle royal / rumble participant controls */
+.battleCardSlot{
+  display:block;
+  padding:12px;
+}
+.battleCardSlot > input,
+.battleCardSlot > select{
+  margin:0 8px 10px 0;
+  max-width:260px;
+}
+.battleCardControls{
+  display:grid;
+  grid-template-columns: minmax(120px,180px) minmax(140px,200px) minmax(160px,220px) auto;
+  gap:10px;
+  align-items:end;
+  margin-top:4px;
+}
+.cardEntrantTools{
+  display:flex;
+  gap:10px;
+  align-items:center;
+  margin:12px 0 8px;
+}
+.smallBtn{
+  padding:8px 12px;
+  font-size:.9rem;
+}
+.cardEntrantChecklist{
+  display:grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap:8px;
+  max-height:300px;
+  overflow:auto;
+  padding:10px;
+  border:1px dashed rgba(255,255,255,.16);
+  border-radius:14px;
+  background:rgba(0,0,0,.15);
+}
+.cardEntrantRow{
+  display:grid;
+  grid-template-columns:28px 1fr auto;
+  align-items:center;
+  gap:8px;
+  padding:8px 10px;
+  border-radius:12px;
+  background:rgba(255,255,255,.04);
+}
+.cardEntrantRow span{font-weight:700;}
+.cardEntrantRow em{font-size:.78rem;opacity:.72;font-style:normal;}
+@media (max-width: 900px){
+  .battleCardControls{grid-template-columns:1fr;}
+  .battleCardSlot > input,
+  .battleCardSlot > select{max-width:100%; width:100%;}
+}
+.summaryList { margin: 8px 0 0 20px; padding: 0; }
+.summaryList li { margin: 4px 0; line-height: 1.35; }
+.matchHistory { margin-top: 10px; border-top: 1px solid rgba(255,255,255,.12); padding-top: 8px; }
+.matchHistory summary { cursor: pointer; font-weight: 700; letter-spacing: .02em; }
+.matchHistoryRow { display: grid; gap: 2px; padding: 7px 0; border-bottom: 1px solid rgba(255,255,255,.08); }
+.matchHistoryRow span { font-size: .86rem; opacity: .86; line-height: 1.35; }
+
+
+
+/* Offline/PWA persistent save panel */
+.savePanel {
+  margin-top: 16px;
+}
+.saveActions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin: 12px 0;
+}
+.saveActions button,
+.importLabel {
+  border: 1px solid var(--line, #33445f);
+  background: linear-gradient(180deg,#26364d,#111a26);
+  color: var(--ink, #f7f0df);
+  border-radius: 14px;
+  padding: 10px 14px;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 44px;
+}
+.saveActions .primary,
+.saveActions button.primary {
+  background: linear-gradient(180deg,#f4ce63,#af7918);
+  color: #111;
+  font-weight: 900;
+}
+.saveActions .danger,
+.saveActions button.danger {
+  background: linear-gradient(180deg,#8e2f2f,#481515);
+}
+html, body {
+  min-height: 100%;
+  overscroll-behavior: none;
+  -webkit-tap-highlight-color: transparent;
+}
+button, select, input {
+  touch-action: manipulation;
+}
+@media (pointer: coarse) {
+  button, .btn, select, input, .importLabel {
+    min-height: 44px;
+  }
+}
+
+/* Booking Sheet UI 1.0 */
+.bookingSheetPage{max-width:1100px;margin:0 auto}.bookingHero{display:flex;align-items:center;justify-content:space-between;gap:18px;padding:18px 20px;border:1px solid rgba(255,255,255,.14);border-radius:18px;background:linear-gradient(135deg,rgba(134,31,65,.32),rgba(0,0,0,.22));box-shadow:0 12px 30px rgba(0,0,0,.22);margin-bottom:14px}.bookingHero h2{margin:4px 0 6px;font-size:30px;letter-spacing:.02em}.eyebrow{font-size:12px;text-transform:uppercase;letter-spacing:.16em;opacity:.78}.bookingHeroMeta{font-size:14px;opacity:.86}.bookingHeroCount{min-width:92px;text-align:center;border:1px solid rgba(255,255,255,.16);border-radius:16px;padding:10px 14px;background:rgba(0,0,0,.22)}.bookingHeroCount strong{display:block;font-size:32px;line-height:1}.bookingHeroCount span{font-size:12px;text-transform:uppercase;letter-spacing:.12em;opacity:.75}.showSetupPanel,.bookingMatchEditor{border:1px solid rgba(255,255,255,.12);border-radius:14px;background:rgba(255,255,255,.04);margin:12px 0;padding:0}.showSetupPanel summary,.bookingMatchEditor summary{cursor:pointer;padding:12px 14px;font-weight:800;letter-spacing:.02em}.showSetupPanel[open],.bookingMatchEditor[open]{padding-bottom:14px}.showSetupPanel .formrow,.bookingMatchEditor .formrow,.bookingEditorGrid{padding:0 14px}.bookingToolbar{position:sticky;top:0;z-index:3;display:flex;flex-wrap:wrap;gap:10px;align-items:center;padding:12px;margin:12px 0;border-radius:16px;background:rgba(20,20,20,.88);backdrop-filter:blur(10px);border:1px solid rgba(255,255,255,.12)}.bookingSheetList{display:grid;gap:14px;margin:16px 0}.bookingMatchCard{border:1px solid rgba(255,255,255,.14);border-radius:18px;background:rgba(255,255,255,.055);box-shadow:0 10px 26px rgba(0,0,0,.2);padding:16px}.bookingCardHeader{display:flex;align-items:flex-start;justify-content:space-between;gap:14px}.bookingRole{font-size:18px;font-weight:900;letter-spacing:.03em}.bookingMeta{font-size:12px;text-transform:uppercase;letter-spacing:.10em;opacity:.72;margin-top:4px}.bookingCardTools{display:flex;gap:6px;flex-wrap:wrap;justify-content:flex-end}.bookingVersus{display:grid;grid-template-columns:1fr auto 1fr;align-items:center;gap:16px;text-align:center;margin:18px 0;padding:14px;border-radius:16px;background:rgba(0,0,0,.18);border:1px dashed rgba(255,255,255,.16)}.bookingVersus strong{font-size:20px;line-height:1.25}.bookingVersus span{font-weight:900;text-transform:uppercase;letter-spacing:.18em;opacity:.65}.teamJoiner{opacity:.72;font-weight:700}.unbooked{opacity:.55;font-style:italic}.placeholderPick{opacity:.9;font-style:italic}.bookingStatusRow{min-height:26px;display:flex;align-items:center;gap:8px}.bookingEditorGrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:12px;margin:0 0 12px}.bookingSheetEntrants{max-height:280px;overflow:auto}.emptyBookingSheet{padding:24px;text-align:center;border:1px dashed rgba(255,255,255,.18);border-radius:16px;opacity:.75}
+@media(max-width:760px){.bookingHero{align-items:flex-start;flex-direction:column}.bookingVersus{grid-template-columns:1fr;gap:8px}.bookingVersus span{font-size:12px}.bookingToolbar{position:static}.bookingCardHeader{flex-direction:column}.bookingCardTools{justify-content:flex-start}}
+
+/* Build 19 Card Builder polish */
+.bookingSheetPage{max-width:1040px}.bookingSheetList{gap:10px;margin:12px 0}.bookingMatchCard{padding:0;border-radius:14px;overflow:hidden}.bookingMatchDetails{padding:0}.bookingMatchDetails>summary{list-style:none;cursor:pointer;padding:12px 14px;border-bottom:1px solid rgba(255,255,255,.12)}.bookingMatchDetails>summary::-webkit-details-marker{display:none}.bookingMatchDetails>summary:before{content:'▶';display:inline-block;margin-right:10px;font-weight:900;opacity:.8}.bookingMatchDetails[open]>summary:before{content:'▼'}.bookingMatchDetails .bookingVersus{margin:12px;padding:10px;border-radius:12px}.bookingMatchDetails .bookingStatusRow{padding:0 12px 10px}.bookingMatchEditor{border:0;background:transparent;margin:0;padding:0 12px 12px}.bookingMatchEditor .bookingEditorGrid,.bookingMatchEditor .formrow{padding:0}.bookingRole{display:inline-block}.bookingHero{padding:14px 16px;margin-bottom:10px}.bookingHero h2{font-size:26px}.bookingToolbar{padding:10px;margin:10px 0;border-radius:12px}.currentCardSummary{border:1px solid rgba(255,255,255,.14);border-radius:14px;background:rgba(0,0,0,.18);padding:12px;margin:12px 0}.currentCardSummary h3{margin:0 0 8px}.cardSummaryRow{width:100%;display:grid;grid-template-columns:minmax(150px,240px) 1fr;gap:10px;align-items:center;text-align:left;margin:6px 0;padding:8px 10px;border-radius:10px;background:rgba(255,255,255,.055);border:1px solid rgba(255,255,255,.10);color:inherit}.cardSummaryRow:hover{background:rgba(255,255,255,.10)}.cardSummaryRow span{opacity:.82}.bookingAdvisorCollapsed{margin:12px 0;padding:0;border-radius:14px}.bookingAdvisorCollapsed>summary{cursor:pointer;font-size:18px;font-weight:900;padding:12px 14px;list-style:none}.bookingAdvisorCollapsed>summary::-webkit-details-marker{display:none}.bookingAdvisorCollapsed>summary:before{content:'▶';display:inline-block;margin-right:10px}.bookingAdvisorCollapsed[open]>summary:before{content:'▼'}.bookingAdvisorCollapsed .scheduleHelper,.bookingAdvisorCollapsed .advisorWarnings,.bookingAdvisorCollapsed .suggestionList{margin-left:12px;margin-right:12px}.showSetupPanel summary{padding:10px 12px}.bookingCardTools .smallBtn{padding:6px 8px}.bookingVersus strong{font-size:17px}@media(max-width:760px){.cardSummaryRow{grid-template-columns:1fr}.bookingMatchDetails>summary{display:flex;gap:10px}.bookingCardTools{width:100%}}
+
+/* Build 20.1 polish: keep backup actions consistent and move Federation back button out of card actions */
+.saveActions button,
+.saveActions .importLabel{
+  font-family: inherit;
+  font-weight: 900;
+  font-size: 16px;
+  letter-spacing: .02em;
+  min-height: 44px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+.bookingPageTop{
+  display:flex;
+  justify-content:flex-start;
+  margin:0 0 10px;
+}
+.backToFederation{
+  padding:8px 12px;
+  font-size:14px;
+}
+
+/* Build 20.2 polish/fix: keep booking and backup controls consistent */
+.saveActions button,
+.saveActions .importLabel {
+  font-family: inherit;
+  font-weight: 800;
+  min-height: 42px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  box-sizing: border-box;
+}
+
+.bookingMatchHighlight {
+  animation: bookingPulse 1.2s ease-out 1;
+}
+
+@keyframes bookingPulse {
+  0% { transform: scale(1); filter: brightness(1); }
+  35% { transform: scale(1.01); filter: brightness(1.16); }
+  100% { transform: scale(1); filter: brightness(1); }
+}
+
+/* Build 21B polish */
+.saveActions .importLabel{
+  font-family: inherit !important;
+  font-weight: 900 !important;
+  font-size: 16px !important;
+  line-height: 1 !important;
+  letter-spacing: .02em !important;
+  text-transform: none !important;
+  padding: 10px 14px !important;
+  min-height: 44px !important;
+}
+
+.bookingMatchDetails > summary.bookingCardHeader{
+  display:grid;
+  grid-template-columns:190px minmax(0,1fr) 190px;
+  align-items:center;
+  gap:12px;
+}
+.bookingMatchDetails > summary.bookingCardHeader:before{
+  grid-column:1;
+  margin:0;
+  justify-self:start;
+}
+.bookingHeaderCenter{
+  grid-column:2;
+  text-align:center;
+  min-width:0;
+}
+.bookingHeaderCenter .bookingRole{
+  display:block;
+}
+.bookingCardTools{
+  grid-column:3;
+  justify-self:end;
+}
+.savedResultCards{
+  display:grid;
+  gap:18px;
+}
+.savedResultCard{
+  display:grid;
+  grid-template-columns:42px 1fr;
+  gap:12px;
+  padding:14px 16px;
+  border:1px solid rgba(255,132,24,.7);
+  border-radius:14px;
+  background:rgba(0,0,0,.24);
+}
+.savedResultNumber{
+  width:32px;
+  height:32px;
+  border-radius:50%;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  background:linear-gradient(180deg,#ffe86a,#ff8125);
+  color:#111;
+  font-weight:900;
+}
+.savedResultCard strong,
+.savedResultCard em,
+.savedResultCard span{
+  display:block;
+}
+.savedResultCard em{
+  margin:.15rem 0 .35rem;
+  opacity:.72;
+  font-style:normal;
+  text-transform:uppercase;
+  letter-spacing:.08em;
+}
+.savedResultBody{
+  display:grid;
+  gap:4px;
+}
+.savedResultCard span{
+  line-height:1.35;
+}
+@media(max-width:760px){
+  .bookingMatchDetails > summary.bookingCardHeader{
+    grid-template-columns:34px 1fr;
+  }
+  .bookingCardTools{
+    grid-column:1 / -1;
+    justify-self:start;
+  }
+}
+
+.showCompleteMode .bookingHero{margin-bottom:14px}
+.showCompletePanel{
+  border:1px solid rgba(255,132,24,.75);
+  border-radius:18px;
+  padding:18px 20px;
+  margin:14px 0 18px;
+  background:linear-gradient(135deg,rgba(134,31,65,.28),rgba(0,0,0,.30));
+  box-shadow:0 16px 34px rgba(0,0,0,.28);
+}
+.showCompleteKicker{
+  color:#ffd34d;
+  text-transform:uppercase;
+  letter-spacing:.18em;
+  font-weight:900;
+  font-size:13px;
+}
+.showCompletePanel h2{margin:6px 0 4px;font-size:32px}
+.showCompleteMeta{opacity:.82;margin-bottom:14px}
+.showCompleteStats{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(150px,1fr));
+  gap:10px;
+  margin:14px 0;
+}
+.showCompleteStats div,.showCompleteHighlights div{
+  border:1px solid rgba(255,255,255,.12);
+  border-radius:14px;
+  padding:12px;
+  background:rgba(0,0,0,.22);
+}
+.showCompleteStats strong{display:block;font-size:30px;line-height:1;color:#ffd34d}
+.showCompleteStats span,.showCompleteHighlights label{
+  display:block;
+  text-transform:uppercase;
+  letter-spacing:.10em;
+  opacity:.70;
+  font-size:12px;
+}
+.showCompleteHighlights{display:grid;gap:10px;margin:12px 0}
+.showCompleteHighlights strong{display:block;margin-top:4px;font-size:18px}
+.showCompleteActions{position:static;backdrop-filter:none;background:transparent;border:0;padding:0;margin:14px 0 8px}
